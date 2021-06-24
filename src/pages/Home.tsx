@@ -1,6 +1,11 @@
+// TODO: Dark Theme
+
 import { FormEvent, useState } from 'react'
+
 import { useHistory } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
+import { useTheme } from '../hooks/useTheme'
+
 import { database } from '../services/firebase'
 
 import illustrationImg from '../assets/images/illustration.svg'
@@ -15,6 +20,8 @@ export function Home() {
   const history = useHistory()
   const { user, signInWithGoogle } = useAuth()
   const [roomCode, setRoomCode] = useState('')
+
+  const { theme, toggleTheme} = useTheme()
 
   async function handleCreateRoom() {
     if (!user) {
@@ -42,7 +49,7 @@ export function Home() {
   }
 
   return (
-    <div id="page-auth">
+    <div id="page-auth" className={theme}>
       <aside>
         <img src={illustrationImg} alt="Ilustração simbolizando perguntas e respostas" />
         <strong>Crie salas de Q&amp;A ao vivo</strong>
@@ -50,6 +57,8 @@ export function Home() {
       </aside>
       <main>
         <div className="main-content">
+          {/* <h1>{theme}</h1> */}
+          {/* <button onClick={toggleTheme}>Toggle</button> */}
           <img src={logoImg} alt="Letmeask" />
           <button onClick={handleCreateRoom} className="create-room">
             <img src={googleIconImg} alt="Logo do Google" />

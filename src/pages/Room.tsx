@@ -1,5 +1,6 @@
+//TODO: Rota Privada
 import { FormEvent, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 
 import { database } from '../services/firebase'
 
@@ -39,12 +40,19 @@ type RoomParams = {
  
 export function Room() {
   const { user } = useAuth()
+  // const history = useHistory()
   const params = useParams<RoomParams>()
   const [newQuestion, setNewQuestion] = useState('')
   const [questions, setQuestions] = useState<Question[]>([])
   const [title, setTitle] = useState('')
 
   const roomId = params.id
+
+  // useEffect(() => {
+  //   if(!user) {
+  //     history.push('/')
+  //   }
+  // }, [user, history])
 
   useEffect(() => {
     const roomRef = database.ref(`rooms/${roomId}`)
