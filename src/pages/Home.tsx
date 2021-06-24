@@ -4,7 +4,7 @@ import { FormEvent, useState } from 'react'
 
 import { useHistory } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
-import { useTheme } from '../hooks/useTheme'
+// import { useTheme } from '../hooks/useTheme'
 
 import { database } from '../services/firebase'
 
@@ -21,7 +21,7 @@ export function Home() {
   const { user, signInWithGoogle } = useAuth()
   const [roomCode, setRoomCode] = useState('')
 
-  const { theme, toggleTheme} = useTheme()
+  // const { theme, toggleTheme} = useTheme()
 
   async function handleCreateRoom() {
     if (!user) {
@@ -45,11 +45,16 @@ export function Home() {
       return
     }
 
+    if(roomRef.val().closedAt) {
+      alert('Room already closed')
+      return
+    }
+
     history.push(`/rooms/${roomCode}`)
   }
 
   return (
-    <div id="page-auth" className={theme}>
+    <div id="page-auth" /*className={theme}*/>
       <aside>
         <img src={illustrationImg} alt="Ilustração simbolizando perguntas e respostas" />
         <strong>Crie salas de Q&amp;A ao vivo</strong>
