@@ -22,6 +22,10 @@ This project was developed using the following technologies:
 
 ## 🚀 Getting started
 
+Enter this link: https://letmeask-luca.web.app/
+
+OR
+
 Clone the project and access the folder.
 
 ```bash
